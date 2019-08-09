@@ -1,4 +1,14 @@
 pipeline {
+
+    node {
+    checkout([$class: 'GitSCM',
+        branches: [[name: '*/master']],
+        doGenerateSubmoduleConfigurations: false,
+        extensions: [],
+        submoduleCfg: [],
+        userRemoteConfigs: [[]]
+    ])
+    }
     agent {
         docker {
             image 'maven:3-alpine'
@@ -12,5 +22,5 @@ pipeline {
             }
         }
     }
-    
+
 }
